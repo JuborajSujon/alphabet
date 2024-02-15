@@ -19,13 +19,10 @@ function handleKeyboardButtonPress(event) {
   // check if the player pressed is equal to the expected alphabet
   if (playerPressed === expectedAlphabet) {
     //update the score
-    //1. get the current score
-    const currentScore = document.getElementById("current-score");
-    const currentScoreValue = parseInt(currentScore.innerText);
-    //2. increase the score by 1
-    const newScore = currentScoreValue + 1;
-    //3. show the new score
-    currentScore.innerText = newScore;
+
+    const currentScore = getTextElementValueById("current-score");
+    const newScore = currentScore + 1;
+    setTextElementValueById("current-score", newScore);
 
     //remove background color by id
     removeBackgroundColorById(expectedAlphabet);
@@ -34,13 +31,14 @@ function handleKeyboardButtonPress(event) {
     continueGame();
   } else {
     //Update life score
-    //1. get the current life score
-    const currentLife = document.getElementById("current-life");
-    const currentLifeValue = parseInt(currentLife.innerText);
-    //2. decrease the life score
+    const currentLifeValue = getTextElementValueById("current-life");
     const newLife = currentLifeValue - 1;
-    //3. show the new life score
-    currentLife.innerText = newLife;
+    setTextElementValueById("current-life", newLife);
+
+    //check if the life score is 0
+    if (newLife === 0) {
+      gameOver();
+    }
   }
 }
 
@@ -58,7 +56,18 @@ function continueGame() {
 }
 
 function play() {
+  // hide everything show only the play ground
   hideElement(".home");
+  hideElement(".score");
   showElement(".play-ground");
+
+  //reset score and life
+  setTextElementValueById("current-score", 0);
+  setTextElementValueById("current-life", 5);
   continueGame();
+}
+
+function gameOver() {
+  hideElement(".play-ground");
+  showElement(".score");
 }

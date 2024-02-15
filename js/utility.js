@@ -18,6 +18,24 @@ function removeBackgroundColorById(elementId) {
   element.classList.remove("bg-orange-400");
 }
 
+//update the score
+//1. get the current score
+// const currentScore = document.getElementById("current-score");
+// const currentScoreValue = parseInt(currentScore.innerText);
+
+function getTextElementValueById(elementId) {
+  const element = document.getElementById(elementId);
+  const elementValueText = element.innerText;
+  const value = parseInt(elementValueText);
+  return value;
+}
+//3. show the new score
+// currentScore.innerText = newScore;
+function setTextElementValueById(elementId, value) {
+  const element = document.getElementById(elementId);
+  element.innerText = value;
+}
+
 // get random alphabet
 function getRandomAlphabet() {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
