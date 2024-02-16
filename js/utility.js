@@ -36,6 +36,12 @@ function setTextElementValueById(elementId, value) {
   element.innerText = value;
 }
 
+function findTextElementValueById(elementId) {
+  const element = document.getElementById(elementId);
+  const text = element.innerText;
+  return text;
+}
+
 // get random alphabet
 function getRandomAlphabet() {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
